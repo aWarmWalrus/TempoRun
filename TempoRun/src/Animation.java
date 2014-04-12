@@ -14,8 +14,8 @@ public class Animation {
 	//constructor
 	public Animation(){//different animation sequences
 		scenes1 = new ArrayList(); 
-		scenes2 = new ArrayList();
-		scenes3 = new ArrayList();
+		scenes2 = new ArrayList(); 
+		scenes3 = new ArrayList(); 
 		
 		currentList = scenes1;
 		totalTime1 = 0;
