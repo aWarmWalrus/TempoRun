@@ -1,5 +1,3 @@
-import java.awt.Color;
-import java.awt.Image;
 
 
 public class C_Sprite extends Sprites{
@@ -7,8 +5,8 @@ public class C_Sprite extends Sprites{
 	Animation a;
 	int collisionTolerance = 1;
 	
-	public C_Sprite(int x, int y, int vX, int vY, Color C, Animation a){
-		super(x,y,vX,vY,C);
+	public C_Sprite(int x, int y, int vX, int vY, Animation a){
+		super(x,y,vX,vY);
 		this.a = a;
 	}
 	
@@ -50,7 +48,7 @@ public class C_Sprite extends Sprites{
 	
 	public boolean onTopOf(C_Sprite other){
 		
-		if ((this.getBotY() - other.getTopY() < collisionTolerance) && (this.getRightX() > other.getLeftX() || this.getLeftX() < other.getRightX())) 
+		if (((Math.abs(this.getBotY() - other.getTopY()) <= collisionTolerance) || ((this.getBotY() > other.getTopY()) && (this.getBotY() < other.getBotY()))) && (this.getRightX() > other.getLeftX() || this.getLeftX() < other.getRightX())) 
 			return true;
 		
 		return false;
@@ -58,14 +56,14 @@ public class C_Sprite extends Sprites{
 	
 	public boolean onBotOf(C_Sprite other){
 		
-		if ((this.getTopY() - other.getBotY() < collisionTolerance) && (this.getRightX() > other.getLeftX() || this.getLeftX() < other.getRightX())) 
+		if ((Math.abs(this.getTopY() - other.getBotY()) <= collisionTolerance) && (this.getRightX() > other.getLeftX() || this.getLeftX() < other.getRightX())) 
 			return true;
 		
 		return false;
 	}
 	
 	public boolean onLeftOf(C_Sprite other){
-		if ((this.getRightX() - other.getLeftX() < collisionTolerance) && (this.getBotY() > other.getTopY() || (this.getTopY() < other.getBotY())))
+		if ((Math.abs(this.getRightX() - other.getLeftX()) <= collisionTolerance) && (this.getBotY() > other.getTopY() || (this.getTopY() < other.getBotY())))
 			return true;
 			
 		return false;
@@ -73,7 +71,7 @@ public class C_Sprite extends Sprites{
 	
 	public boolean onRightOf(C_Sprite other) {
 		
-		if((this.getLeftX() - other.getRightX() < collisionTolerance) && (this.getBotY() > other.getTopY()) || (this.getTopY() < other.getBotY()))
+		if((Math.abs(this.getLeftX() - other.getRightX()) <= collisionTolerance) && (this.getBotY() > other.getTopY()) || (this.getTopY() < other.getBotY()))
 			return true;
 		
 		return false;
