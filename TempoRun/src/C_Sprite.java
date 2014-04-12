@@ -42,12 +42,7 @@ public class C_Sprite extends Sprites{
 		return X + a.getImage().getWidth(null);
 	}
 			
-	//get sprites image
-	public Image getImage(){
-		return a.getImage();
-	}
-
-		    
+	    
 	//updates image
 	public void update(long timePassed) {
 		a.update(timePassed);

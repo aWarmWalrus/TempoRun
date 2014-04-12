@@ -8,7 +8,7 @@ public class Sprites {
 	protected int VX;
 	protected int VY;
 	protected Color color;
-	
+	protected Animation a;
 	
 	public Sprites(int x, int y, int vX, int vY, Color C){
 		this.X = x;
@@ -16,6 +16,10 @@ public class Sprites {
 		this.VX = vX;
 		this.VY = vY;
 		this.color = C;
+	}
+	
+	public Animation getAnimation(){
+		return a;
 	}
 	
 	public int getX(){
@@ -37,6 +41,11 @@ public class Sprites {
 	public Color getColor(){
 		return color;
 	}
+	
+	public void setAnimation(Animation i){
+		a = i;
+	}
+	
 	public void setX(int x){
 		this.X = x;
 	}
@@ -55,6 +64,13 @@ public class Sprites {
 	
 	public void setColor(Color c){
 		this.color = c;
+	}
+	
+	//change position
+	public void updatePos(long timePassed){
+		X += VX * timePassed;
+		Y += VY * timePassed;
+		this.a.update(timePassed);
 	}
 
 }
