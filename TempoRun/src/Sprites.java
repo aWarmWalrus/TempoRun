@@ -37,5 +37,6 @@ public class Sprites {
 	public void setX(int x){
 		this.X = x;
 	}
+	
 
 }
