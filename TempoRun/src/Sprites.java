@@ -4,13 +4,13 @@ import java.awt.Image;
 
 public class Sprites {
 	
-	protected int X;
-	protected int Y;
-	protected int VX;
-	protected int VY;
+	protected float X;
+	protected float Y;
+	protected float VX;
+	protected float VY;
 	protected Animation a;
 	
-	public Sprites(int x, int y, int vX, int vY){
+	public Sprites(float x, float y, float vX, float vY){
 		this.X = x;
 		this.Y = y;
 		this.VX = vX;
@@ -21,19 +21,19 @@ public class Sprites {
 		return a;
 	}
 	
-	public int getX(){
+	public float getX(){
 		return X;
 	}
 	
-	public int getY(){
+	public float getY(){
 		return Y;
 	}
 	
-	public int getVX(){
+	public float getVX(){
 		return VX;
 	}
 	
-	public int getVY(){
+	public float getVY(){
 		return VY;
 	}
 	
@@ -42,19 +42,19 @@ public class Sprites {
 		a = i;
 	}
 	
-	public void setX(int x){
+	public void setX(float x){
 		this.X = x;
 	}
 	
-	public void setY(int Y){
+	public void setY(float Y){
 		this.Y = Y;
 	}
 	
-	public void setVX(int vx){
+	public void setVX(float vx){
 		this.VX = vx;
 	}
 	
-	public void setVY(int vy){
+	public void setVY(float vy){
 		this.VY = vy;
 	}
 	
@@ -63,7 +63,7 @@ public class Sprites {
 	public void updatePos(long timePassed){
 		X += VX * timePassed;
 		Y += VY * timePassed;
-		this.a.update(timePassed);
+		//this.a.update(timePassed);
 	}
 	
 	//get sprites image
