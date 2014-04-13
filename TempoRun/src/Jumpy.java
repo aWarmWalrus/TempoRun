@@ -54,7 +54,7 @@ public class Jumpy extends C_Sprite{
 	
 	//change position
 	public void updatePos(long timePassed){
-		System.out.println("Update Ran! X is now " + X);
+//		System.out.println("Update Ran! X is now " + X);
 		X = X + VX * timePassed;
 		if (VY > 0){
 			Y = Y + VY * timePassed;

@@ -9,6 +9,7 @@ public class Controller implements KeyListener{
 	public Controller (TheGame g){
 		game = g;
 		J = game.characters.get(0);
+		g.addKeyListener(g);
 	}
 	public void keyPressed(KeyEvent e) {
 		
