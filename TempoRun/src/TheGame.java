@@ -18,7 +18,7 @@ public class TheGame extends Applet implements ActionListener{
 	public TheGame(){
 		//calls actionPerformed every 30 ms
 		Timer myTimer;
-		myTimer=new Timer(30, this);
+		myTimer=new Timer(100, this);
 		myTimer.start();
 		
 		characters.add(new Jumpy(0, 0, 0, 0, new Animation()));
