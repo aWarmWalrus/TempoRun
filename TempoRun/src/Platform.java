@@ -3,6 +3,7 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -17,14 +18,30 @@ public class Platform extends C_Sprite{
 	BufferedImage a4=null;
 	BufferedImage a5=null;
 	BufferedImage a6=null;
+	Random rand = new Random();
+	BufferedImage img = null;
 	public Platform(float x, float y, float vX, float vY, Color C, Animation a) {
 		super(x, y, vX, vY, a);
 		color = C;
 		LoadImages();
+		setImage();
+		
 	}
 	
 	public Image getImage(){
-		return a1;
+		return img;
+	}
+	
+	public void setImage(){
+		switch (rand.nextInt(6)){
+		case 0: img = a1; break;
+		case 1: img = a2; break;
+		case 2: img = a3; break;
+		case 3: img = a4;break;
+		case 4: img = a5;break;
+		case 5: img = a6;break;
+		default: img = a6;
+		}
 	}
 	public void LoadImages(){
 		
