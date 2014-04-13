@@ -21,7 +21,7 @@ public class Jumpy extends C_Sprite{
 	public void loadImages(){
 		BufferedImage a1 = null;
 		try {
-			a1 = ImageIO.read(new File("characster.png"));
+			a1 = ImageIO.read(new File("character.png"));
 		} catch (IOException e){
 			
 		}
@@ -32,7 +32,7 @@ public class Jumpy extends C_Sprite{
 	public Image getImage(){
 		BufferedImage a1 = null;
 		try {
-			a1 = ImageIO.read(new File("characster.png"));
+			a1 = ImageIO.read(new File("character.png"));
 		} catch (IOException e){
 			
 		}
