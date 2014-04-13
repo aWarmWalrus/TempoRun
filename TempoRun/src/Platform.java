@@ -17,7 +17,7 @@ public class Platform extends C_Sprite{
 	BufferedImage a4=null;
 	BufferedImage a5=null;
 	BufferedImage a6=null;
-	public Platform(int x, int y, int vX, int vY, Color C, Animation a) {
+	public Platform(float x, float y, float vX, float vY, Color C, Animation a) {
 		super(x, y, vX, vY, a);
 		color = C;
 		LoadImages();
