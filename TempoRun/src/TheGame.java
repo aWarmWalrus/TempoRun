@@ -17,6 +17,7 @@ public class TheGame extends Applet implements ActionListener{
 	Controller player;
 	Jumpy J;
 	ArrayList<Platform> platforms=new ArrayList<Platform>();
+	ArrayList<BassWave> BassWaves= new ArrayList<BassWave>();
 	//ArrayList<Song> playlist = new ArrayList<Song>();
 	Song theSong;
 	int timeElapsed=0;
@@ -43,6 +44,7 @@ public class TheGame extends Applet implements ActionListener{
 		J = player.J;
 		platforms.add(new Platform(0, 550, 0.08F, 0, Color.black, new Animation()));
 		platforms.add(new Platform(600, 350, -.05F, 0, Color.black, new Animation()));
+		BassWaves.add(new BassWave(600, 350, 0, -.05F, new Animation()));
 		this.addKeyListener(player);
 		setFocusable(true);
 		
@@ -87,6 +89,15 @@ public class TheGame extends Applet implements ActionListener{
 					}
 
 				}
+				for(int wIndex=0;wIndex<BassWaves.size();wIndex++){
+					if(player.J.onTopOf(BassWaves.get(wIndex))){
+						//wavePush
+						player.J.setVY(J.getVY() - Math.abs(J.getVY() * 2.0F));
+					}
+
+
+				}
+				
 
 			
 			for(int x=0;x<platforms.size();x++){
@@ -96,6 +107,15 @@ public class TheGame extends Applet implements ActionListener{
 					platforms.remove(x);
 					x--;
 					score++;
+				}
+			}
+			
+			for(int x=0;x<BassWaves.size();x++){
+				//updates platform position & removes platforms when needed
+				BassWaves.get(x).updatePos(currentTime);
+				if(BassWaves.get(x).getY() < 0){
+					BassWaves.remove(x);
+					x--;
 				}
 			}
 		}
@@ -121,7 +141,8 @@ public class TheGame extends Applet implements ActionListener{
 			
 			
 			if (rand.nextInt(20) + 1 == 10)
-				platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+				//platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+				BassWaves.add(new BassWave(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, new Animation()));	
 			
 			
 			
@@ -130,6 +151,10 @@ public class TheGame extends Applet implements ActionListener{
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(x).getImage(),Math.round(platforms.get(x).getX()),Math.round(platforms.get(x).getY()),null);
+		}
+		for(int x=0;x<BassWaves.size();x++){
+			//image platform
+			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
 		}
 	}
 	

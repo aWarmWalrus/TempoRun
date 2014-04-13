@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 
 public class Platform extends C_Sprite{
