@@ -13,6 +13,8 @@ public class TheGame extends Applet implements ActionListener{
 
 	ArrayList<Jumpy> characters=new ArrayList<Jumpy>();
 	ArrayList<Platform> platforms=new ArrayList<Platform>();
+	//ArrayList<Song> playlist = new ArrayList<Song>();
+	Song theSong;
 	int timeElapsed=0;
 	long lastFrame;
 	long cumTime;
@@ -27,7 +29,8 @@ public class TheGame extends Applet implements ActionListener{
 		characters.add(new Jumpy(500, 0, -1, 0, new Animation()));
 		platforms.add(new Platform(0, 250, 0, 0, Color.black, new Animation()));
 		System.out.println("Inside Loop!");
-
+		
+		theSong = new Song("RunAway.wav");
 		//gives it a file to read Commented Out because yolo( and its not done yet)
 		//SomeMusicAPI.read("file.wav");
 		
@@ -161,5 +164,5 @@ public class TheGame extends Applet implements ActionListener{
 		//making the new platforms
 	}
 	
-	public int 
+	
 }
