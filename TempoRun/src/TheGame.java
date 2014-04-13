@@ -99,7 +99,7 @@ public class TheGame extends Applet implements ActionListener{
 				}
 				
 
-			
+				System.out.println(J.getVX()+", ");
 			for(int x=0;x<platforms.size();x++){
 				//updates platform position & removes platforms when needed
 				platforms.get(x).updatePos(currentTime);
