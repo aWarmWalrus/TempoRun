@@ -15,13 +15,11 @@ public class Jumpy extends C_Sprite{
 	BufferedImage a1=null;
 	int mapWidth;
 	int mapHeight;
-	int grav = 1;
 	boolean touchTop = false;
 	
 	public Jumpy(float x, float y, float vX, float vY, Animation a) {
 		super(x, y, vX, vY, a);
 		loadImages();
-		System.out.println("made jumpy!");
 	}
 	
 	public void setWidthHeight(int W, int H){
@@ -78,7 +76,7 @@ public class Jumpy extends C_Sprite{
 		if (X < 0) {X = 0; VX = 0;}
 		else if (this.getRightX() > mapWidth){ X = mapWidth - this.getImage().getWidth(null); VX = 0;}
 		if (Y < 0) {Y = 0; VY = 0;touchTop = true;}
-		else if (this.getBotY() > mapHeight) {Y = mapWidth - this.getImage().getHeight(null); VY = 0; onPlatform = true;}
+		else if (this.getBotY() > mapHeight) {Y = mapWidth - this.getImage().getHeight(null); VY = 0;}
 //		System.out.println(timePassed);
 		this.a.update(timePassed);
 	}
