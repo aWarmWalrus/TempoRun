@@ -5,7 +5,7 @@ public class C_Sprite extends Sprites{
 	Animation a;
 	int collisionTolerance = 1;
 	
-	public C_Sprite(int x, int y, int vX, int vY, Animation a){
+	public C_Sprite(float x, float y, float vX, float vY, Animation a){
 		super(x,y,vX,vY);
 		this.a = a;
 	}
@@ -21,22 +21,22 @@ public class C_Sprite extends Sprites{
 	}
 			
 	//y of top
-	public int getTopY(){
+	public float getTopY(){
 		return Y;
 	}
 			
 	//y of bot
-	public int getBotY(){
+	public float getBotY(){
 		return Y + a.getImage().getHeight(null);
 	}
 		
 	//x of left
-	public int getLeftX(){
+	public float getLeftX(){
 		return X;
 	}
 			
 	//x of right
-	public int getRightX(){
+	public float getRightX(){
 		return X + a.getImage().getWidth(null);
 	}
 			
