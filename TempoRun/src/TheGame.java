@@ -81,12 +81,12 @@ public class TheGame extends Applet implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		repaint();
 		// TODO Auto-generated method stub
-		int delta=getDelta();
+		long currentTime=getTime();
 		//pass time to musicAPI
 		
 		//update position
 		for(int x=0;x<characters.size();x++){
-			characters.get(x).update(delta);
+			characters.get(x).update(currentTime);
 			//scroll through platforms to find one under player x
 			for(int pIndex=0;pIndex<platforms.size();pIndex++){
 				if(characters.get(x).onTopOf(platforms.get(pIndex))){
@@ -104,7 +104,7 @@ public class TheGame extends Applet implements ActionListener{
 		}
 		for(int x=0;x<platforms.size();x++){
 			//updates platform position & removes platforms when needed
-			platforms.get(x).update(delta);
+			platforms.get(x).update(currentTime);
 			if(platforms.get(x).getX()+platforms.get(x).getWidth()<0){
 				platforms.remove(x);
 				x--;
