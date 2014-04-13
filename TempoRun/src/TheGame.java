@@ -49,8 +49,9 @@ public class TheGame extends Applet implements ActionListener{
 		
 		Thread ENGINE=new Thread(new engine());
 		ENGINE.run();
-		//gives it a file to read Commented Out because yolo( and its not done yet)
-		//SomeMusicAPI.read("file.wav");
+
+
+
 		
 		//initialize time of last frame
 		lastFrame=getTime();
@@ -111,6 +112,7 @@ public class TheGame extends Applet implements ActionListener{
 	public void paint(Graphics g){
 		setSize(mapWidth,mapHeight);
 		//drawImages here
+
 		//for(int x=0;x<characters.size();x++){
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
 			g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
@@ -124,6 +126,7 @@ public class TheGame extends Applet implements ActionListener{
 			
 			
 			
+
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(x).getImage(),Math.round(platforms.get(x).getX()),Math.round(platforms.get(x).getY()),null);
