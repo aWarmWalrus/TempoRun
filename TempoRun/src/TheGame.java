@@ -1,4 +1,5 @@
 import java.applet.Applet;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,6 +20,9 @@ public class TheGame extends Applet implements ActionListener{
 		Timer myTimer;
 		myTimer=new Timer(30, this);
 		myTimer.start();
+		
+		characters.add(new Jumpy(50, 0, 0, 0, new Animation()));
+		platforms.add(new Platform(40, 150, 0, 0, Color.black, new Animation()));
 
 		//gives it a file to read Commented Out because yolo( and its not done yet)
 		//SomeMusicAPI.read("file.wav");
@@ -29,13 +33,13 @@ public class TheGame extends Applet implements ActionListener{
 	
 	public void paint(Graphics g){
 		//drawImages here
-		for(int x=0;x<characters.size();x++){
-			g.drawImage(characters.get(x).getAnimation().getImage(),characters.get(x).getX(),characters.get(x).getY(),null);
-		}
-		for(int x=0;x<platforms.size();x++){
+		//for(int x=0;x<characters.size();x++){
+			g.drawImage(characters.get(0).getImage(),characters.get(0).getX(),characters.get(0).getY(),null);
+		//}
+		//for(int x=0;x<platforms.size();x++){
 			//image platform
-			g.drawImage(platforms.get(x).getAnimation().getImage(),platforms.get(x).getX(),platforms.get(x).getY(),null);
-		}
+			g.drawImage(platforms.get(0).getImage(),platforms.get(0).getX(),platforms.get(0).getY(),null);
+		//}
 	}
 	public long getTime(){
 		return System.currentTimeMillis();
@@ -45,7 +49,7 @@ public class TheGame extends Applet implements ActionListener{
 		long time=getTime();
 		int delta=(int)(time-lastFrame);
 		lastFrame=time;
-		return (Integer) null;
+		return (int) lastFrame;
 	}
 	public void newPlatform(){
 
