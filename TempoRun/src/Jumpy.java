@@ -10,14 +10,24 @@ import javax.swing.ImageIcon;
 
 public class Jumpy extends C_Sprite{
 
-	final int JUMP_VAL = 15;
+	final float JUMP_VAL = -1;
 	protected boolean onPlatform = false;
 	BufferedImage a1=null;
+	int mapWidth;
+	int mapHeight;
+	int grav = 1;
+	boolean touchTop = false;
+	
 	public Jumpy(float x, float y, float vX, float vY, Animation a) {
 		super(x, y, vX, vY, a);
 		loadImages();
+		System.out.println("made jumpy!");
 	}
 	
+	public void setWidthHeight(int W, int H){
+		mapWidth = W;
+		mapHeight = H;
+	}
 	public void loadImages(){
 		a1 = null;
 		try {
@@ -48,19 +58,27 @@ public class Jumpy extends C_Sprite{
 	}
 	
 	public void jump(){
-		if (onPlatform)
+		//if (onPlatform)
 			this.setVY(JUMP_VAL);
 	}
 	
 	//change position
 	public void updatePos(long timePassed){
-		System.out.println("Update Ran! X is now " + X);
 		X = X + VX * timePassed;
-		if (VY > 0){
+		if (VY <= -JUMP_VAL && !onPlatform){
 			Y = Y + VY * timePassed;
-			VY = VY - 1;
+			VY = VY + .100F;
 		}
-		X = Math.max(X, 0);
+		else if (!onPlatform){
+			Y = Y + VY * timePassed;
+			VY = VY + .1F;
+		}
+		else
+			Y = Y + VY * timePassed;
+		if (X < 0) {X = 0; VX = 0;}
+		else if (this.getRightX() > mapWidth){ X = mapWidth - this.getImage().getWidth(null); VX = 0;}
+		if (Y < 0) {Y = 0; VY = 0;touchTop = true;}
+		else if (this.getBotY() > mapHeight) {Y = mapWidth - this.getImage().getHeight(null); VY = 0; onPlatform = true;}
 //		System.out.println(timePassed);
 		this.a.update(timePassed);
 	}

@@ -45,12 +45,20 @@ public class C_Sprite extends Sprites{
 	public void update(long timePassed) {
 		a.update(timePassed);
 	}
-	
+	/*
 	public boolean onTopOf(C_Sprite other){
 		
-		if (((Math.abs(this.getBotY() - other.getTopY()) <= collisionTolerance) || ((this.getBotY() > other.getTopY()) && (this.getBotY() < other.getBotY()))) && (this.getRightX() > other.getLeftX() || this.getLeftX() < other.getRightX())) 
+		if (((this.getBotY() > other.getTopY()) && (this.getBotY() < other.getBotY())) && ((this.getRightX() > other.getLeftX()) && (this.getLeftX() < other.getRightX()))) 
 			return true;
 		
+		return false;
+	}*/
+	public boolean onTopOf(C_Sprite P){
+		if((this.getBotY() > P.getTopY() && this.getLeftX() > P.getLeftX() && this.getLeftX() < P.getRightX()) || 
+		(this.getBotY() > P.getTopY() && this.getRightX() > P.getLeftX() && this.getRightX() < P.getRightX()))
+			if (this.getBotY() < P.getBotY())
+				if(this.getVY() > 0)
+					return true;
 		return false;
 	}
 	

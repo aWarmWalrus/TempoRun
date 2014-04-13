@@ -3,25 +3,32 @@ import java.awt.event.KeyListener;
 
 public class Controller implements KeyListener{
 	
-	TheGame game; 
-	Jumpy J;
+	public Jumpy J;
+	public float moveSpeed = .5F;
 	
-	public Controller (TheGame g){
-		game = g;
-		J = game.characters.get(0);
+	public Controller (Jumpy jump, int mapWidth, int mapHeight){
+		J = jump;
+		J.setWidthHeight(mapWidth, mapHeight);
+	}
+	
+	public Jumpy getJumpy(){
+		return J;
 	}
 	public void keyPressed(KeyEvent e) {
 		
 		int keycode = e.getKeyCode();
 		
 		if (keycode == KeyEvent.VK_RIGHT){
-			J.setVX(10 + game.platforms.get(0).VX);
+			J.setVX(moveSpeed);
+			
 		}
 		else if (keycode == KeyEvent.VK_LEFT){
-			game.characters.get(0).setVX(game.platforms.get(0).VX-10);
+			J.setVX(-moveSpeed);
+			
 		}
 		if (keycode == KeyEvent.VK_SPACE){
-			game.characters.get(0).jump();
+			J.jump();
+			
 		}
 			
 		
@@ -33,10 +40,10 @@ public class Controller implements KeyListener{
 		int keycode = e.getKeyCode();
 		
 		if (keycode == KeyEvent.VK_RIGHT){
-			J.setVX(game.platforms.get(0).VX);
+			J.setVX(0);
 		}
 		else if (keycode == KeyEvent.VK_LEFT){
-			game.characters.get(0).setVX(game.platforms.get(0).VX);
+			J.setVX(0);
 		}
 
 		
