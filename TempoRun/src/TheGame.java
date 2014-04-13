@@ -120,7 +120,7 @@ public class TheGame extends Applet implements ActionListener{
 			
 			
 			
-			if (rand.nextInt(40) + 1 == 20)
+			if (rand.nextInt(20) + 1 == 10)
 				platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
 			
 			
