@@ -60,6 +60,8 @@ public class Jumpy extends C_Sprite{
 			Y = Y + VY * timePassed;
 			VY = VY - 1;
 		}
+		X = Math.max(X, 0);
+//		System.out.println(timePassed);
 		this.a.update(timePassed);
 	}
 

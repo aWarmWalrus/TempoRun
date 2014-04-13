@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -22,14 +24,21 @@ public class TheGame extends Applet implements ActionListener{
 	public TheGame(){
 		//calls actionPerformed every 30 ms
 		Timer myTimer;
-		myTimer=new Timer(50, this);
+		myTimer=new Timer(30, this);
 		myTimer.start();
 
-		theSong = new Song("RunAway.wav");
+		try {
+			String currentDir = new File("").getAbsolutePath();
+			System.out.println(currentDir);
+			theSong = new Song(currentDir + "\\RunAway.wav");
+		} catch (FileNotFoundException e) {
+			System.out.println("Couldn't find the file");			
+			e.printStackTrace();
+		}
 
 		Thread ENGINE=new Thread(new engine());
 		ENGINE.run();
-		characters.add(new Jumpy(1000, 0, 1, 0, new Animation()));
+		characters.add(new Jumpy(1000, 0, -0.5F, 0, new Animation()));
 		platforms.add(new Platform(0, 50, 0, 0, Color.black, new Animation()));
 		
 		//gives it a file to read Commented Out because yolo( and its not done yet)
@@ -38,6 +47,7 @@ public class TheGame extends Applet implements ActionListener{
 		//initialize time of last frame
 		lastFrame=getTime();
 	}
+	
 	public class engine implements Runnable, ActionListener{
 
 		@Override
@@ -48,7 +58,7 @@ public class TheGame extends Applet implements ActionListener{
 			
 			//update position
 			for(int x=0;x<characters.size();x++){
-				characters.get(x).update(currentTime);
+				characters.get(x).updatePos(currentTime);
 				//scroll through platforms to find one under player x
 				for(int pIndex=0;pIndex<platforms.size();pIndex++){
 					if(characters.get(x).onTopOf(platforms.get(pIndex))){
@@ -66,7 +76,7 @@ public class TheGame extends Applet implements ActionListener{
 			}
 			for(int x=0;x<platforms.size();x++){
 				//updates platform position & removes platforms when needed
-				platforms.get(x).update(currentTime);
+				platforms.get(x).updatePos(currentTime);
 				if(platforms.get(x).getX()+platforms.get(x).getWidth()<0){
 					platforms.remove(x);
 					x--;
