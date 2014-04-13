@@ -8,36 +8,39 @@ import javax.swing.Timer;
 
 
 public class TheGame extends Applet implements ActionListener{
-	
+
 	ArrayList<Jumpy> characters=new ArrayList<Jumpy>();
-	ArrayList<Platform> platforms=new ArrayList(Platform)();
-	
+	ArrayList<Platform> platforms=new ArrayList<Platform>();
+
 	long lastFrame;
-	SomeMusicAPI musicReader=new SomeMusicAPI();
+	//SomeMusicAPI musicReader=new SomeMusicAPI();
 	public TheGame(){
 		//calls actionPerformed every 30 ms
 		Timer myTimer;
 		myTimer=new Timer(30, this);
 		myTimer.start();
-		//gives it a file to read
-		SomeMusicAPI.read("file.wav");
+
+		//gives it a file to read Commented Out because yolo( and its not done yet)
+		//SomeMusicAPI.read("file.wav");
+
 		//initialize time of last frame
 		lastFrame=getTime();
 	}
+	
 	public void paint(Graphics g){
 		//drawImages here
 		for(int x=0;x<characters.size();x++){
-			g.drawImage(characters.get(x).getX(),characters.get(x).getY(),characters.get(x).getImage());
+			g.drawImage(characters.get(x).getAnimation().getImage(),characters.get(x).getX(),characters.get(x).getY(),null);
 		}
 		for(int x=0;x<platforms.size();x++){
 			//image platform
-			g.drawImage(platforms.get(x).getX(),platforms.get(x).getY(),platforms.get(x).getImage());
+			g.drawImage(platforms.get(x).getAnimation().getImage(),platforms.get(x).getX(),platforms.get(x).getY(),null);
 		}
 	}
 	public long getTime(){
 		return System.currentTimeMillis();
 	}
-	
+
 	public int getDelta(){
 		long time=getTime();
 		int delta=(int)(time-lastFrame);
@@ -45,7 +48,7 @@ public class TheGame extends Applet implements ActionListener{
 		return (Integer) null;
 	}
 	public void newPlatform(){
-		
+
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -65,18 +68,20 @@ public class TheGame extends Applet implements ActionListener{
 					//jump still hasnt ended
 					characters.get(x).setOnPlatform(false);
 				}
+
 			}
+
 		}
 		for(int x=0;x<platforms.size();x++){
 			//updates platform position & removes platforms when needed
 			platforms.get(x).update(delta);
-			if(platforms.get(x).getX()+platforms.get(x).getLength()<0){
+			if(platforms.get(x).getX()+platforms.get(x).getWidth()<0){
 				platforms.remove(x);
 				x--;
 			}
 		}
 		//making the new platforms
-		
+
 	}
-	
+
 }
