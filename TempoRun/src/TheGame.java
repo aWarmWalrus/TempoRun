@@ -111,5 +111,6 @@ public class TheGame extends Applet implements ActionListener{
 		//making the new platforms
 
 	}
-
+	
+	public int 
 }
