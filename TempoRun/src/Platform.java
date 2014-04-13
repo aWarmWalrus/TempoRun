@@ -24,7 +24,7 @@ public class Platform extends C_Sprite{
 	}
 	
 	public Image getImage(){
-		return new ImageIcon("platform1.png").getImage();
+		return a1;
 	}
 	public void LoadImages(){
 		
