@@ -47,10 +47,14 @@ public class Controller implements KeyListener{
 		int keycode = e.getKeyCode();
 		
 		if (keycode == KeyEvent.VK_RIGHT){
-			J.setVX(0);
+			if(J.getVX()==moveSpeed){
+				J.setVX(0);
+			}
 		}
 		else if (keycode == KeyEvent.VK_LEFT){
-			J.setVX(0);
+			if(J.getVX()==-moveSpeed){
+				J.setVX(0);
+			}
 		}
 
 		

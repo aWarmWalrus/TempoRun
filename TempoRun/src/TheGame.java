@@ -25,6 +25,7 @@ public class TheGame extends Applet implements ActionListener, KeyListener{
 	Controller player;
 	Jumpy J;
 	ArrayList<Platform> platforms=new ArrayList<Platform>();
+	ArrayList<BassWave> BassWaves= new ArrayList<BassWave>();
 	//ArrayList<Song> playlist = new ArrayList<Song>();
 	Song theSong;
 	Spectrogram spect;
@@ -87,6 +88,7 @@ public class TheGame extends Applet implements ActionListener, KeyListener{
 		J = player.J;
 		platforms.add(new Platform(0, 550, 0.08F, 0, Color.black, new Animation()));
 		platforms.add(new Platform(600, 350, -.05F, 0, Color.black, new Animation()));
+		BassWaves.add(new BassWave(600, 350, 0, -.05F, new Animation()));
 		this.addKeyListener(player);
 		setFocusable(true);
 		
@@ -143,21 +145,41 @@ public class TheGame extends Applet implements ActionListener, KeyListener{
 						J.setVX(platforms.get(pIndex).getVX());
 						player.J.setOnPlatform(true);
 						player.J.setY(platforms.get(pIndex).getTopY() - J.getImage().getHeight(null));
+						System.out.println("On a Platform!");
 					}else{
 						//jump still hasnt ended
-						player.J.setOnPlatform(false);
+						if (!(J.getBotY() > mapHeight))
+							player.J.setOnPlatform(false);
 					}
 
 				}
+				for(int wIndex=0;wIndex<BassWaves.size();wIndex++){
+					if(player.J.onTopOf(BassWaves.get(wIndex))){
+						//wavePush
+						player.J.setVY(BassWaves.get(wIndex).getVY() + .2F);
+					}
 
-			
+
+				}
+				
+
+				System.out.println(J.getVX()+", ");
 			for(int x=0;x<platforms.size();x++){
 				//updates platform position & removes platforms when needed
 				platforms.get(x).updatePos(currentTime);
-				if(platforms.get(x).getY() < 0){
+				if(platforms.get(x).getBotY() < 0){
 					platforms.remove(x);
 					x--;
 					score++;
+				}
+			}
+			
+			for(int x=0;x<BassWaves.size();x++){
+				//updates platform position & removes platforms when needed
+				BassWaves.get(x).updatePos(currentTime);
+				if(BassWaves.get(x).getBotY() < 0){
+					BassWaves.remove(x);
+					x--;
 				}
 			}
 		}
@@ -178,22 +200,28 @@ public class TheGame extends Applet implements ActionListener, KeyListener{
 
 		//for(int x=0;x<characters.size();x++){
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
-			g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
+			
 //			System.out.println(characters.get(0).getImage().toString());
 			
 			
 			
 			if (rand.nextInt(20) + 1 == 10)
 				platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+			if (rand.nextInt(100) + 1 == 15)
+				BassWaves.add(new BassWave(0, mapHeight, 0, -.8F, new Animation()));	
 			
 			
 			
-			
+		for(int x=0;x<BassWaves.size();x++){
+			//image platform
+			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
+		}
 
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(x).getImage(),Math.round(platforms.get(x).getX()),Math.round(platforms.get(x).getY()),null);
 		}
+		g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
 	}
 	
 	
