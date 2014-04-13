@@ -1,5 +1,9 @@
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
@@ -15,12 +19,25 @@ public class Jumpy extends C_Sprite{
 	}
 	
 	public void loadImages(){
-		Image a1 = new ImageIcon("character.png").getImage();
+		BufferedImage a1 = null;
+		try {
+			a1 = ImageIO.read(new File("F:\\KINGSTON\\HackRU2014\\TempoRun\\TempoRun\\character.png"));
+		} catch (IOException e){
+			
+		}
+//		Image a1 = new ImageIcon("F:\\KINGSTON\\HackRU2014\\TempoRun\\TempoRun\\character.png").getImage();
 		a.addScene(a1, 50);
 	}
 	
 	public Image getImage(){
-		return new ImageIcon("characer.png").getImage();
+		BufferedImage a1 = null;
+		try {
+			a1 = ImageIO.read(new File("F:\\KINGSTON\\HackRU2014\\TempoRun\\TempoRun\\character.png"));
+		} catch (IOException e){
+			
+		}
+		return a1;
+//		return new ImageIcon("F:\\KINGSTON\\HackRU2014\\TempoRun\\TempoRun\\character.png").getImage();
 	}
 	public boolean isOnPlatform(){
 		return onPlatform;

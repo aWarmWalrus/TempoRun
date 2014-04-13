@@ -21,20 +21,23 @@ public class TheGame extends Applet implements ActionListener{
 		myTimer=new Timer(30, this);
 		myTimer.start();
 		
-		characters.add(new Jumpy(50, 0, 0, 0, new Animation()));
+		characters.add(new Jumpy(0, 0, 0, 0, new Animation()));
 		platforms.add(new Platform(40, 150, 0, 0, Color.black, new Animation()));
 
 		//gives it a file to read Commented Out because yolo( and its not done yet)
 		//SomeMusicAPI.read("file.wav");
-
+		
 		//initialize time of last frame
 		lastFrame=getTime();
 	}
 	
 	public void paint(Graphics g){
+		setSize(1000,500);
 		//drawImages here
 		//for(int x=0;x<characters.size();x++){
+//		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
 			g.drawImage(characters.get(0).getImage(),characters.get(0).getX(),characters.get(0).getY(),null);
+//			System.out.println(characters.get(0).getImage().toString());
 		//}
 		//for(int x=0;x<platforms.size();x++){
 			//image platform
@@ -56,6 +59,7 @@ public class TheGame extends Applet implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		repaint();
 		// TODO Auto-generated method stub
 		int delta=getDelta();
 		//update position
