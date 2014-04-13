@@ -29,11 +29,9 @@ public class TheGame extends Applet implements ActionListener{
 
 		Thread ENGINE=new Thread(new engine());
 		ENGINE.run();
+		
 		characters.add(new Jumpy(1000, 0, 1, 0, new Animation()));
 		platforms.add(new Platform(0, 50, 0, 0, Color.black, new Animation()));
-		
-		//gives it a file to read Commented Out because yolo( and its not done yet)
-		//SomeMusicAPI.read("file.wav");
 		
 		//initialize time of last frame
 		lastFrame=getTime();
@@ -86,11 +84,9 @@ public class TheGame extends Applet implements ActionListener{
 	public void paint(Graphics g){
 		setSize(600,500);
 		//drawImages here
-		//for(int x=0;x<characters.size();x++){
-//		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
+		for(int x=0;x<characters.size();x++){
 			g.drawImage(characters.get(0).getImage(),Math.round(characters.get(0).getX()),Math.round(characters.get(0).getY()),null);
-//			System.out.println(characters.get(0).getImage().toString());
-
+		}
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(0).getImage(),Math.round(platforms.get(0).getX()),Math.round(platforms.get(0).getY()),null);
