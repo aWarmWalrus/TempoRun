@@ -21,22 +21,22 @@ public class C_Sprite extends Sprites{
 	}
 			
 	//y of top
-	public float getTopY(){
+	public int getTopY(){
 		return Y;
 	}
 			
 	//y of bot
-	public float getBotY(){
+	public int getBotY(){
 		return Y + a.getImage().getHeight(null);
 	}
 		
 	//x of left
-	public float getLeftX(){
+	public int getLeftX(){
 		return X;
 	}
 			
 	//x of right
-	public float getRightX(){
+	public int getRightX(){
 		return X + a.getImage().getWidth(null);
 	}
 			
