@@ -92,7 +92,7 @@ public class TheGame extends Applet implements ActionListener{
 				for(int wIndex=0;wIndex<BassWaves.size();wIndex++){
 					if(player.J.onTopOf(BassWaves.get(wIndex))){
 						//wavePush
-						player.J.setVY(J.getVY() - Math.abs(J.getVY() * 2.0F));
+						player.J.setVY(J.getVY() - Math.abs(J.getVY() * 1.5F));
 					}
 
 
@@ -135,27 +135,28 @@ public class TheGame extends Applet implements ActionListener{
 
 		//for(int x=0;x<characters.size();x++){
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
-			g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
+			
 //			System.out.println(characters.get(0).getImage().toString());
 			
 			
 			
 			if (rand.nextInt(20) + 1 == 10)
-				//platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+				platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+			if (rand.nextInt(50) + 1 == 15)
 				BassWaves.add(new BassWave(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, new Animation()));	
 			
 			
 			
-			
+		for(int x=0;x<BassWaves.size();x++){
+			//image platform
+			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
+		}
 
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(x).getImage(),Math.round(platforms.get(x).getX()),Math.round(platforms.get(x).getY()),null);
 		}
-		for(int x=0;x<BassWaves.size();x++){
-			//image platform
-			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
-		}
+		g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
 	}
 	
 	private Image dbImage; 
