@@ -76,7 +76,10 @@ public class Jumpy extends C_Sprite{
 		if (X < 0) {X = 0; VX = 0;}
 		else if (this.getRightX() > mapWidth){ X = mapWidth - this.getImage().getWidth(null); VX = 0;}
 		if (Y < 0) {Y = 0; VY = 0;touchTop = true;}
-		else if (this.getBotY() > mapHeight) {Y = mapWidth - this.getImage().getHeight(null); VY = 0;}
+		else {
+			Y = Math.min(Y, mapHeight + 10);
+		}
+		//else if (this.getBotY() > mapHeight) {Y = mapWidth - this.getImage().getHeight(null); VY = 0;}
 //		System.out.println(timePassed);
 		this.a.update(timePassed);
 	}

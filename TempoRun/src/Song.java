@@ -24,12 +24,41 @@ public class Song implements Callable<Object>,ActionListener{
 		file = filename;
 		InputStream inputStream = new FileInputStream(filename);
 		wave = new Wave(inputStream);
+		
 //		MakeSound m = new MakeSound();
 //		m.playSound(filename);
 	}
 	
 	public Spectrogram getSpect(){
 		return new Spectrogram(wave);
+	}
+	
+	public static double getBass(Spectrogram spect, int frame){
+		double[] freq = spect.getNormalizedSpectrogramData()[frame];
+		double total = 0;
+		for(int i = 0; i < 100; i++){
+			total += freq[i];
+		}
+		return total / 100.0;
+	}
+	
+	public static double getMiddle(Spectrogram spect, int frame){
+		double[] freq = spect.getNormalizedSpectrogramData()[frame];
+	
+		double total = 0;
+		for(int i = 100; i < 200; i++){
+			total += freq[i];
+		}
+		return total / 100.0;
+	}
+	
+	public static double getTreble(Spectrogram spect, int frame){
+		double[] freq = spect.getNormalizedSpectrogramData()[frame];
+		double total = 0;
+		for(int i = 155; i < 255; i++){
+			total += freq[i];
+		}
+		return total / 100.0;
 	}
 	
 	public int getPlatY(int time){
