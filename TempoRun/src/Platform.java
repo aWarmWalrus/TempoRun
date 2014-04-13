@@ -1,13 +1,22 @@
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 
 public class Platform extends C_Sprite{
 
 	protected Color color;
-	
+	BufferedImage a1=null;
+	BufferedImage a2=null;
+	BufferedImage a3=null;
+	BufferedImage a4=null;
+	BufferedImage a5=null;
+	BufferedImage a6=null;
 	public Platform(int x, int y, int vX, int vY, Color C, Animation a) {
 		super(x, y, vX, vY, a);
 		color = C;
@@ -18,12 +27,18 @@ public class Platform extends C_Sprite{
 		return new ImageIcon("platform1.png").getImage();
 	}
 	public void LoadImages(){
-		Image a1 = new ImageIcon("platform1.png").getImage();
-		Image a2 = new ImageIcon("platform2.png").getImage();
-		Image a3 = new ImageIcon("platform3.png").getImage();
-		Image a4 = new ImageIcon("platform4.png").getImage();
-		Image a5 = new ImageIcon("platform5.png").getImage();
-		Image a6 = new ImageIcon("platform6.png").getImage();
+		
+		try {
+			a1 = ImageIO.read(new File("platform1.png"));
+			a2 = ImageIO.read(new File("platform2.png"));
+			a3 = ImageIO.read(new File("platform3.png"));
+			a4 = ImageIO.read(new File("platform4.png"));
+			a5 = ImageIO.read(new File("platform5.png"));
+			a6 = ImageIO.read(new File("platform6.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		a.addScene(a1, 50);
 		a.addScene(a2, 50);
 		a.addScene(a3, 50);

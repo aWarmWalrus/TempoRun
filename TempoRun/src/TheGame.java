@@ -13,7 +13,7 @@ public class TheGame extends Applet implements ActionListener{
 
 	ArrayList<Jumpy> characters=new ArrayList<Jumpy>();
 	ArrayList<Platform> platforms=new ArrayList<Platform>();
-
+	int timeElapsed=0;
 	long lastFrame;
 	//SomeMusicAPI musicReader=new SomeMusicAPI();
 	public TheGame(){
@@ -23,7 +23,7 @@ public class TheGame extends Applet implements ActionListener{
 		myTimer.start();
 		
 		characters.add(new Jumpy(0, 0, 0, 0, new Animation()));
-		platforms.add(new Platform(40, 150, 0, 0, Color.black, new Animation()));
+		platforms.add(new Platform(0, 50, 0, 0, Color.black, new Animation()));
 
 		//gives it a file to read Commented Out because yolo( and its not done yet)
 		//SomeMusicAPI.read("file.wav");
@@ -33,7 +33,7 @@ public class TheGame extends Applet implements ActionListener{
 	}
 	
 	public void paint(Graphics g){
-		setSize(1000,500);
+		setSize(600,500);
 		//drawImages here
 		//for(int x=0;x<characters.size();x++){
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
@@ -82,6 +82,8 @@ public class TheGame extends Applet implements ActionListener{
 		repaint();
 		// TODO Auto-generated method stub
 		int delta=getDelta();
+		//pass time to musicAPI
+		
 		//update position
 		for(int x=0;x<characters.size();x++){
 			characters.get(x).update(delta);
