@@ -1,6 +1,7 @@
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -43,6 +44,25 @@ public class TheGame extends Applet implements ActionListener{
 			//image platform
 			g.drawImage(platforms.get(0).getImage(),platforms.get(0).getX(),platforms.get(0).getY(),null);
 		//}
+	}
+	private Image dbImage; 
+	private Graphics dbg; 
+	@Override
+	public void update(Graphics g){
+		if (dbImage == null) {
+			dbImage = createImage (this.getSize().width, this.getSize().height); 
+			dbg = dbImage.getGraphics (); 
+		} 
+		// clear screen in background 
+		dbg.setColor (getBackground ()); 
+		dbg.fillRect (0, 0, this.getSize().width, this.getSize().height); 
+
+		// draw elements in background 
+		dbg.setColor (getForeground()); 
+		paint (dbg); 
+
+		// draw image on the screen 
+		g.drawImage (dbImage, 0, 0, this); 
 	}
 	public long getTime(){
 		return System.currentTimeMillis();
