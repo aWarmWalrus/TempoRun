@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Image;
 
 
 public class Sprites {
@@ -63,6 +64,11 @@ public class Sprites {
 		X += VX * timePassed;
 		Y += VY * timePassed;
 		this.a.update(timePassed);
+	}
+	
+	//get sprites image
+	public Image getImage(){
+		return a.getImage();
 	}
 
 }
