@@ -25,7 +25,7 @@ public class TheGame extends Applet implements ActionListener{
 
 		Thread ENGINE=new Thread(new engine());
 		ENGINE.run();
-		characters.add(new Jumpy(1000, 0, -1, 0, new Animation()));
+		characters.add(new Jumpy(1000, 0, 1, 0, new Animation()));
 		platforms.add(new Platform(0, 50, 0, 0, Color.black, new Animation()));
 		
 
@@ -40,7 +40,7 @@ public class TheGame extends Applet implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			// TODO Auto-generated method stub
-			long currentTime=getTime();
+			int currentTime=getDelta();
 			//pass time to musicAPI
 			
 			//update position
@@ -122,6 +122,13 @@ public class TheGame extends Applet implements ActionListener{
 		return System.currentTimeMillis();
 
 	}
+
+	public int getDelta(){
+		long time=getTime();
+		int delta=(int)(time-lastFrame);
+		lastFrame=time;
+		return (Integer) delta;
+	}
 	public void newPlatform(){
 
 	}
@@ -132,37 +139,6 @@ public class TheGame extends Applet implements ActionListener{
 		long timePassed = System.currentTimeMillis() - cumTime;
 		cumTime += timePassed;
 		
-		
-		//pass time to musicAPI
-		
-		//update position
-		for(int x=0;x<characters.size();x++){
-			characters.get(x).updatePos(timePassed);
-			//scroll through platforms to find one under player x
-			for(int pIndex=0;pIndex<platforms.size();pIndex++){
-				if(characters.get(x).onTopOf(platforms.get(pIndex))){
-					//ends jump
-					characters.get(x).setVY(0);
-					characters.get(x).setOnPlatform(true);
-					characters.get(x).setY(platforms.get(pIndex).getTopY());
-				}else{
-					//jump still hasnt ended
-					characters.get(x).setOnPlatform(false);
-				}
-
-			}
-
-		}
-		for(int x=0;x<platforms.size();x++){
-			//updates platform position & removes platforms when needed
-			platforms.get(x).updatePos(timePassed);
-			if(platforms.get(x).getX()+platforms.get(x).getWidth()<0){
-				platforms.remove(x);
-				x--;
-			}
-		}
-
-		//making the new platforms
 	}
 
 }
