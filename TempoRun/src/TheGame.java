@@ -83,16 +83,18 @@ public class TheGame extends Applet implements ActionListener{
 						J.setVX(platforms.get(pIndex).getVX());
 						player.J.setOnPlatform(true);
 						player.J.setY(platforms.get(pIndex).getTopY() - J.getImage().getHeight(null));
+						System.out.println("On a Platform!");
 					}else{
 						//jump still hasnt ended
-						player.J.setOnPlatform(false);
+						if (!(J.getBotY() > mapHeight))
+							player.J.setOnPlatform(false);
 					}
 
 				}
 				for(int wIndex=0;wIndex<BassWaves.size();wIndex++){
 					if(player.J.onTopOf(BassWaves.get(wIndex))){
 						//wavePush
-						player.J.setVY(J.getVY() - Math.abs(J.getVY() * 2.0F));
+						player.J.setVY(BassWaves.get(wIndex).getVY() + .2F);
 					}
 
 
@@ -103,7 +105,7 @@ public class TheGame extends Applet implements ActionListener{
 			for(int x=0;x<platforms.size();x++){
 				//updates platform position & removes platforms when needed
 				platforms.get(x).updatePos(currentTime);
-				if(platforms.get(x).getY() < 0){
+				if(platforms.get(x).getBotY() < 0){
 					platforms.remove(x);
 					x--;
 					score++;
@@ -113,7 +115,7 @@ public class TheGame extends Applet implements ActionListener{
 			for(int x=0;x<BassWaves.size();x++){
 				//updates platform position & removes platforms when needed
 				BassWaves.get(x).updatePos(currentTime);
-				if(BassWaves.get(x).getY() < 0){
+				if(BassWaves.get(x).getBotY() < 0){
 					BassWaves.remove(x);
 					x--;
 				}
@@ -135,27 +137,28 @@ public class TheGame extends Applet implements ActionListener{
 
 		//for(int x=0;x<characters.size();x++){
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
-			g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
+			
 //			System.out.println(characters.get(0).getImage().toString());
 			
 			
 			
 			if (rand.nextInt(20) + 1 == 10)
-				//platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
-				BassWaves.add(new BassWave(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, new Animation()));	
+				platforms.add(new Platform(rand.nextInt(mapWidth - 50), mapHeight, 0, -.5F, Color.black, new Animation()));
+			if (rand.nextInt(100) + 1 == 15)
+				BassWaves.add(new BassWave(0, mapHeight, 0, -.8F, new Animation()));	
 			
 			
 			
-			
+		for(int x=0;x<BassWaves.size();x++){
+			//image platform
+			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
+		}
 
 		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(x).getImage(),Math.round(platforms.get(x).getX()),Math.round(platforms.get(x).getY()),null);
 		}
-		for(int x=0;x<BassWaves.size();x++){
-			//image platform
-			g.drawImage(BassWaves.get(x).getImage(),Math.round(BassWaves.get(x).getX()),Math.round(BassWaves.get(x).getY()),null);
-		}
+		g.drawImage(player.J.getImage(),Math.round(player.J.getX()),Math.round(player.J.getY()),null);
 	}
 	
 	private Image dbImage; 
