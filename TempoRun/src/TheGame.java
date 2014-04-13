@@ -24,13 +24,14 @@ public class TheGame extends Applet implements ActionListener{
 		Timer myTimer;
 		myTimer=new Timer(50, this);
 		myTimer.start();
-		
-		cumTime = System.currentTimeMillis();
-		characters.add(new Jumpy(500, 0, -1, 0, new Animation()));
-		platforms.add(new Platform(0, 250, 0, 0, Color.black, new Animation()));
-		System.out.println("Inside Loop!");
-		
+
 		theSong = new Song("RunAway.wav");
+
+		Thread ENGINE=new Thread(new engine());
+		ENGINE.run();
+		characters.add(new Jumpy(1000, 0, -1, 0, new Animation()));
+		platforms.add(new Platform(0, 50, 0, 0, Color.black, new Animation()));
+		
 		//gives it a file to read Commented Out because yolo( and its not done yet)
 		//SomeMusicAPI.read("file.wav");
 		
@@ -89,13 +90,13 @@ public class TheGame extends Applet implements ActionListener{
 //		g.drawRect(characters.get(0).getX(), characters.get(0).getY(), characters.get(0).getWidth(), characters.get(0).getHeight());
 			g.drawImage(characters.get(0).getImage(),Math.round(characters.get(0).getX()),Math.round(characters.get(0).getY()),null);
 //			System.out.println(characters.get(0).getImage().toString());
-		//}
-			System.out.println(characters.get(0).getVX());
-		//for(int x=0;x<platforms.size();x++){
+
+		for(int x=0;x<platforms.size();x++){
 			//image platform
 			g.drawImage(platforms.get(0).getImage(),Math.round(platforms.get(0).getX()),Math.round(platforms.get(0).getY()),null);
-		//}
+		}
 	}
+	
 	private Image dbImage; 
 	private Graphics dbg; 
 	@Override
@@ -106,7 +107,7 @@ public class TheGame extends Applet implements ActionListener{
 			dbg = dbImage.getGraphics (); 
 		} 
 		// clear screen in background 
-		dbg.setColor (getBackground ()); 
+		dbg.setColor (Color.BLACK); 
 		dbg.fillRect (0, 0, this.getSize().width, this.getSize().height); 
 
 		// draw elements in background 
